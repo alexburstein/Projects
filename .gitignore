@@ -1,0 +1,6 @@
+*.class
+.idea/
+.git.iml
+venv/
+out/
+IdeaProjects.iml
