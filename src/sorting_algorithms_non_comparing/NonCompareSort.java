@@ -23,6 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class NonCompareSort <T extends Countable> {
     private final static int MAX_ALLOWED_NUM_OF_ELEMENTS = Integer.MAX_VALUE; // for radix sort only.
     private final static int NUM_OF_THREADS = Runtime.getRuntime().availableProcessors(); // for your consideration
+    private final static int BYTE_SIZE = 8;
     private List<T> origList;
     private Object[] tmpResultArray;
     private AtomicInteger[] histogram;
@@ -64,7 +65,7 @@ public class NonCompareSort <T extends Countable> {
         initValueRange();
         int mask = 0xFF; // byte size.
 
-        for (int i = 0; i < 4; ++i){
+        for (int i = 0; i < 4 && (valueRange >> i * BYTE_SIZE != 0); ++i){ // number of bytes in int
             initConcurrentHistogram(mask); // initializes histogram size of mask.
             fillHistogramConcurrently(mask<<i, i); // fills histogram according to masked bits.
             initAccumulationArrays();
@@ -89,10 +90,10 @@ public class NonCompareSort <T extends Countable> {
         valueRange = maxValue  + 1 - minValue;
     }
 
-    private void initConcurrentHistogram(int requestedSize){
-        histogram = new AtomicInteger[requestedSize];
+    private void initConcurrentHistogram(int maxIndexInHistogram){
+        histogram = new AtomicInteger[maxIndexInHistogram + 1];
 
-        for(int i = 0; i < requestedSize; ++i){
+        for(int i = 0; i <= maxIndexInHistogram; ++i){
             histogram[i] = new AtomicInteger();
         }
     }
@@ -113,7 +114,8 @@ public class NonCompareSort <T extends Countable> {
                 int rangeEnd = (finalThreadNum == NUM_OF_THREADS - 1) ? origList.size() : rangeStart + portionPerThread;
 
                 for(int i = rangeStart; i < rangeEnd; ++i){
-                    int placeInHistogram = ((origList.get(i).getIntValue() - valueOffset) & mask)>>(maskOffset * 8);
+                    int placeInHistogram =
+                                ((origList.get(i).getIntValue() - valueOffset) & mask) >> (maskOffset * BYTE_SIZE);
                     histogram[placeInHistogram].getAndIncrement();
                 }
             });
@@ -152,13 +154,13 @@ public class NonCompareSort <T extends Countable> {
 
         Thread fromLeft = new Thread(()->{
             for (int i = 0; i < origList.size() / 2; ++i){
-                int histogramIndex = ((origList.get(i).getIntValue() - valueOffset) & mask)>>(maskOffset * 8);
+                int histogramIndex = ((origList.get(i).getIntValue() - valueOffset) & mask)>>(maskOffset * BYTE_SIZE);
                 tmpResultArray[firstIndexAccumulationArray[histogramIndex]++] = origList.get(i);
             }
         });
         Thread fromRight = new Thread(()->{
             for (int i = origList.size() - 1; i >= origList.size() / 2; --i){
-                int histogramIndex = ((origList.get(i).getIntValue() - valueOffset) & mask)>>(maskOffset * 8);
+                int histogramIndex = ((origList.get(i).getIntValue() - valueOffset) & mask)>>(maskOffset * BYTE_SIZE);
                 tmpResultArray[histogram[histogramIndex].decrementAndGet()] = origList.get(i);
             }
         });
