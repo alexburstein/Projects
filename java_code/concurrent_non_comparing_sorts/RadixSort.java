@@ -10,6 +10,6 @@ public class RadixSort<T>{
      * @param <T> a type that implements Countable, or its subtype.
      */
     public static <T extends Countable> void radixSort(List<T> list){
-        new NonCompareSort<T>().radixSortLogic(list);
+        new NonCompareSortsLogic<T>().radixSortLogic(list);
     }
 }

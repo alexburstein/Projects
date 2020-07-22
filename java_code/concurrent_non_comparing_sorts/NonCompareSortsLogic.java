@@ -20,7 +20,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class NonCompareSort <T extends Countable> {
+public class NonCompareSortsLogic<T extends Countable> {
     private final static int MAX_ALLOWED_NUM_OF_ELEMENTS = Integer.MAX_VALUE; // for radix sort only.
     private final static int NUM_OF_THREADS = Runtime.getRuntime().availableProcessors(); // for your consideration
     private final static int BYTE_SIZE = 8;

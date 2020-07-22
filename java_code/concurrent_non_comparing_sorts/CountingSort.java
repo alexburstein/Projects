@@ -9,6 +9,6 @@ public class CountingSort<T> {
      * @param <T> a type that implements Countable, or its subtype.
      */
     public static <T extends Countable> void countingSort(List<T> list){
-        new NonCompareSort<T>().CountingSortLogic(list);
+        new NonCompareSortsLogic<T>().CountingSortLogic(list);
     }
 }
