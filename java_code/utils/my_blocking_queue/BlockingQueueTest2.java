@@ -1,4 +1,4 @@
-package my_blocking_queue;
+package utils.my_blocking_queue;
 
 import org.junit.Test;
 

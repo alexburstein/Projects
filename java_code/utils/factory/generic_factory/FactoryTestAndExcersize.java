@@ -1,4 +1,4 @@
-package factory.generic_factory;
+package utils.factory.generic_factory;
 
 import java.util.function.Function;
 
@@ -16,11 +16,11 @@ public class FactoryTestAndExcersize {
 		Function<String, String> x = new InstncMgr();
 		stringFactory.add(4, x);
 		
-		/* prints all the elements that were added to the factory */
+		/* prints all the elements that were added to the utils.factory */
 		printEm(stringFactory);
 		
 		
-		/* new factory, recieves "this" of class Nested2  */
+		/* new utils.factory, recieves "this" of class Nested2  */
 		Factory<Integer, String, Nested2> Nested2Factory = new Factory<>();
 		Nested2Factory.add(1, Nested2::printhehe);
 		System.out.println(Nested2Factory.create(1, new Nested2()));

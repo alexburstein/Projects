@@ -1,4 +1,4 @@
-package observer;
+package utils.observer;
 
 import java.util.function.Consumer;
 
@@ -23,7 +23,7 @@ public class ObserverHolder {
 		subject.setdata(0);
 		System.out.println();
 		
-		/* stop the second and third observer */
+		/* stop the second and third utils.observer */
 		observer2.unregister();
 		observer3.unregister();
 		System.out.println();
@@ -34,7 +34,7 @@ public class ObserverHolder {
 		
 		System.out.println();
 		
-		/* register the second and third observer */
+		/* register the second and third utils.observer */
 		observer2.register(subject);
 		observer3.register(subject);
 		System.out.println();
@@ -48,7 +48,7 @@ public class ObserverHolder {
 		
 		System.out.println();
 
-		/* observer3 changes field of observer according to subject update */
+		/* observer3 changes field of utils.observer according to subject update */
 		observer3.register(subject);
 
 		for (int i = 1; i < 10; ++i) {
@@ -89,7 +89,7 @@ public class ObserverHolder {
 		@Override
 		void Action(T d) {
 			
-				System.out.println("Third observer = old data is " +
+				System.out.println("Third utils.observer = old data is " +
 								this.getData() + " replace with data from subject " + d);
 				this.setData(d);
 		}

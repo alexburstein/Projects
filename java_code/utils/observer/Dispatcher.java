@@ -1,4 +1,4 @@
-package observer;
+package utils.observer;
 
 import java.util.LinkedHashSet;
 import java.util.Objects;
@@ -22,7 +22,7 @@ public class Dispatcher<T> implements AutoCloseable {
     }
 
     /**
-     * removes the given observer from the set of observers that would be notified on call of notifyAll.
+     * removes the given utils.observer from the set of observers that would be notified on call of notifyAll.
      * activates the observers onDispatcherDeath method.
      * if dispatcher closed, IllegalStateException would be thrown
      * @param cb the callBack that is registered.

@@ -1,7 +1,7 @@
 package sql_crud.tests;
 
 import sql_crud.DirectoryMonitor;
-import observer.CallBack;
+import utils.observer.CallBack;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;

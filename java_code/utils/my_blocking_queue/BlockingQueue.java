@@ -1,4 +1,4 @@
-package my_blocking_queue;
+package utils.my_blocking_queue;
 
 import java.util.Comparator;
 import java.util.Objects;

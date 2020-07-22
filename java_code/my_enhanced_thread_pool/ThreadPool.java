@@ -1,7 +1,7 @@
 package my_enhanced_thread_pool;
 
 import org.jetbrains.annotations.NotNull;
-import my_blocking_queue.BlockingQueue;
+import utils.my_blocking_queue.BlockingQueue;
 
 import java.util.ArrayList;
 import java.util.List;

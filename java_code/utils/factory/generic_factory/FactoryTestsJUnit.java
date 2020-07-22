@@ -1,4 +1,4 @@
-package factory.generic_factory;
+package utils.factory.generic_factory;
 
 import org.junit.Test;
 

@@ -14,7 +14,7 @@ package concurrent_non_comparing_sorts;
     ** accepts only types that implement Countable interface.
 */
 
-import pair.Pair;
+import utils.pair.Pair;
 
 import java.util.Comparator;
 import java.util.List;

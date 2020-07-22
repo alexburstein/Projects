@@ -1,4 +1,4 @@
-package pair;
+package utils.pair;
 
 import java.util.ArrayList;
 import java.util.List;

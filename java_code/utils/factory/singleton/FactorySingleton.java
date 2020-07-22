@@ -1,6 +1,6 @@
-package factory.singleton;
+package utils.factory.singleton;
 
-import factory.generic_factory.Factory;
+import utils.factory.generic_factory.Factory;
 
 import java.util.function.Function;
 

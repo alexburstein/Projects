@@ -1,4 +1,4 @@
-package pair;
+package utils.pair;
 
 import java.util.Comparator;
 import java.util.List;
@@ -31,7 +31,7 @@ public class Pair<K, V> implements Map.Entry<K, V>{
 	 * @param <K> key type
 	 * @param <V> value type
 	 * @param pair if null throw exception
-	 * @return a new swapped pair
+	 * @return a new swapped utils.pair
 	 */
 	public static <K, V> Pair<V, K> swap(Pair<K, V> pair){
 		Objects.requireNonNull(pair);
@@ -42,7 +42,7 @@ public class Pair<K, V> implements Map.Entry<K, V>{
 	 * 
 	 * @param <T> type of the element
 	 * @param arr - an array of elements
-	 * @return a pair of minimum and maximum from the array
+	 * @return a utils.pair of minimum and maximum from the array
 	 */
 	public static <T extends Comparable<? super T>> Pair<T,T> minMax(T[] arr){
 		return minMax(arr, Pair::compareToToComparator);

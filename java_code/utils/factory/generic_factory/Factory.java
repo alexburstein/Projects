@@ -1,4 +1,4 @@
-package factory.generic_factory;
+package utils.factory.generic_factory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +22,7 @@ public class Factory<K, T, D> {
 	}
 
 	/**
-	 * adds a method to the factory.
+	 * adds a method to the utils.factory.
 	 * @param key for the function
 	 * @param func for placing in the map. if null, will throw NullPointerException
 	 */

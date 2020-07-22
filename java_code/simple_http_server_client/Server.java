@@ -3,7 +3,7 @@ package simple_http_server_client;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
-import factory.singleton.FactorySingleton;
+import utils.factory.singleton.FactorySingleton;
 import org.json.JSONException;
 import org.json.JSONObject;
 

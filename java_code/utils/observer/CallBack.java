@@ -1,4 +1,4 @@
-package observer;
+package utils.observer;
 
 import java.util.Objects;
 import java.util.function.Consumer;

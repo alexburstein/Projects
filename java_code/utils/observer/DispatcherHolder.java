@@ -1,4 +1,4 @@
-package observer;
+package utils.observer;
 
 /**
  * An Observer implementation, for Observer design pattern.

@@ -5,8 +5,8 @@ package sql_crud;
  * watches for changes in the given directory. when a change is observed, a watchKey is sent to the EventHandler.
  */
 
-import observer.CallBack;
-import observer.Dispatcher;
+import utils.observer.CallBack;
+import utils.observer.Dispatcher;
 
 import java.io.IOException;
 import java.nio.file.*;
