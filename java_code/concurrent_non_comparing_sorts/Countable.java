@@ -1,4 +1,4 @@
-package sorting_algorithms_non_comparing;
+package concurrent_non_comparing_sorts;
 
 public interface Countable {
     int getIntValue();

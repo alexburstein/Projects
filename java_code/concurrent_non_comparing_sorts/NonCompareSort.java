@@ -1,4 +1,4 @@
-package sorting_algorithms_non_comparing;
+package concurrent_non_comparing_sorts;
 
 /*
     Stable Generic MultiThreaded Counting Sort and Radix Sort.
@@ -31,26 +31,8 @@ public class NonCompareSort <T extends Countable> {
     private int valueOffset;
     private int valueRange;
 
-    /**
-     * sorts the elements in the list. complexity: O(2n + k) time, and O(n + 2k) space. k is range of values
-     * @param list a list of Countable elements.
-     * @param <T> a type that implements Countable, or its subtype.
-     */
-    public static <T extends Countable> void countingSort(List<T> list){
-       new NonCompareSort<T>().CountingSortLogic(list);
-    }
 
-    /**
-     * sorts the elements in the list. O(d * (2n + b)), and O(d * (n + 2b)) space.
-     *  d is number of buckets in k. b is size of each bucket.
-     * @param list a list of Countable elements.
-     * @param <T> a type that implements Countable, or its subtype.
-     */
-    public static <T extends Countable> void radixSort(List<T> list){
-       new NonCompareSort<T>().radixSortLogic(list);
-    }
-
-    private void CountingSortLogic(List<T> list){
+    void CountingSortLogic(List<T> list){
         origList = list;
         initValueRange(); // initializes the range of values, and the minimum value offset from zero.
         initConcurrentHistogram(valueRange); // initializes a histogram size of value range.
@@ -60,12 +42,12 @@ public class NonCompareSort <T extends Countable> {
         sortOriginalList();
     }
 
-    private void radixSortLogic(List<T> list){
+    void radixSortLogic(List<T> list){
         origList = list;
         initValueRange();
         int mask = 0xFF; // byte size.
 
-        for (int i = 0; i < 4 && (valueRange >> i * BYTE_SIZE != 0); ++i){ // number of bytes in int
+        for (int i = 0; i < 4 && (valueRange >> (i * BYTE_SIZE) != 0); ++i){
             initConcurrentHistogram(mask); // initializes histogram size of mask.
             fillHistogramConcurrently(mask<<i, i); // fills histogram according to masked bits.
             initAccumulationArrays();

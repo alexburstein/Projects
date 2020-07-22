@@ -1,4 +1,4 @@
-package sorting_algorithms_non_comparing;
+package concurrent_non_comparing_sorts;
 
 import org.junit.jupiter.api.Test;
 
@@ -70,12 +70,12 @@ public class Tests {
 
     @Test
     public void testNonComparingSorts(){
-        naiveTest(NonCompareSort::radixSort);
-        naiveTest(NonCompareSort::countingSort);
-        test1(NonCompareSort::radixSort);
-        test1(NonCompareSort::countingSort);
-        test2(NonCompareSort::radixSort);
-        test2(NonCompareSort::countingSort);
+        naiveTest(RadixSort::radixSort);
+        naiveTest(CountingSort::countingSort);
+        test1(RadixSort::radixSort);
+        test1(CountingSort::countingSort);
+        test2(RadixSort::radixSort);
+        test2(CountingSort::countingSort);
    }
 
 
