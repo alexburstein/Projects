@@ -56,11 +56,7 @@ public class DirectoryMonitor_test {
 
     private void initMonitor(){
         DirectoryMonitor monitor = null;
-        try {
-            monitor = new DirectoryMonitor(filePath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        monitor = new DirectoryMonitor(filePath);
 
         new Thread(monitor).start();
 
