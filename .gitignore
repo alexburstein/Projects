@@ -5,3 +5,4 @@ venv/
 out/
 Projects.iml
 *.out
+*.exe
