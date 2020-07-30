@@ -1,8 +1,6 @@
 /***************************************************************
-Single Linked List.
+Singly Linked List.
 created by Alex Burstein   alexburstein@gmail.com
-reviewed by -  Omri Roimi           8/2019
-infinity labs ol72
 ****************************************************************/
 
 #include <stdio.h> /* printf*/
