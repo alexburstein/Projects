@@ -21,8 +21,7 @@ import java.nio.file.WatchKey;
 
 public class FileEventHandler {
     private DirectoryMonitor dirMonitor;
-/* for DEBUG	private final String backUp = "C:\\Users\\WIN10\\IdeaProjects\\WorkSpace\\src\\IOTProject\\sqlCrud\\backup.txt"; */
-	private final CRUD<Integer,String> udpCrud; /* for DEBUG	new FileCRUDImp(backUp); */
+	private final CRUD<Integer,String> udpCrud;
 	private final Path monitoredFilePath;
 	private final String origFile;
 	private final BufferedReader lineReader;
@@ -36,7 +35,7 @@ public class FileEventHandler {
     public FileEventHandler(String origFile, String host, int port) throws IOException{
 		makeSureFileExists(origFile);
 		this.origFile = origFile;
-		monitoredFilePath = Paths.get(origFile);   //new File(origFile).toPath();
+		monitoredFilePath = Paths.get(origFile);  
 		udpCrud = new UDPClientAdapter(new InetSocketAddress(host, port));
 		lineReader = new BufferedReader(new FileReader(origFile));
 		backUpLinesFromOrigFile();
