@@ -18,7 +18,7 @@ public class Integration_test {
     FileCRUDImp fileCRUDImp;
     SqlCrudImp sqlCrudImp;
     Thread serverThread;
-    String origFilePath = "C:\\Users\\WIN10\\IdeaProjects\\WorkSpace\\src\\IOTProject\\sqlCrud\\tmpMonitored\\monitored.txt";
+    String origFilePath = "XXXXXX";
 
     private void init() {
         try {
