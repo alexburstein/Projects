@@ -4,22 +4,22 @@ import org.junit.Test;
 
 public class BiggestNonAjacentSubArr {
 
-    public int findBiggestNonAjacentSubArr(int[] arr, int curIndex){
+    public int findBiggestNonAjacentSubArrRec(int[] arr, int curIndex){
         if (curIndex >= arr.length){
             return 0;
         }
 
-        int sum1  = findBiggestNonAjacentSubArr(arr, curIndex + 2);
+        int sum1  = findBiggestNonAjacentSubArrRec(arr, curIndex + 2);
         if (arr[curIndex] > 0){
             sum1 += arr[curIndex];
         }
-        int sum2  = findBiggestNonAjacentSubArr(arr, curIndex + 1);
+        int sum2  = findBiggestNonAjacentSubArrRec(arr, curIndex + 1);
 
         return Math.max(sum1,sum2);
     }
 
     /* geeks for geeks iterative solution simplified */
-    int FindMaxSum(int[] arr){
+    int findBiggestNonAjacentSubArrIter(int[] arr){
         int sumWithCur = arr[0];
         int sumNoCur = 0;
         int maxUpToPrev;
@@ -36,24 +36,24 @@ public class BiggestNonAjacentSubArr {
 
     @Test
     public void test(){
-        System.out.println(findBiggestNonAjacentSubArr(new int[]{1,3,1,0}, 0));
-        System.out.println(findBiggestNonAjacentSubArr(new int[]{1,0,0,1}, 0));
-        System.out.println(findBiggestNonAjacentSubArr(new int[]{1,0,0,0}, 0));
-        System.out.println(findBiggestNonAjacentSubArr(new int[]{1,2,2,3}, 0));
-        System.out.println(findBiggestNonAjacentSubArr(new int[]{1,2,3,4}, 0));
-        System.out.println(findBiggestNonAjacentSubArr(new int[]{5,1,1,5}, 0));
-        System.out.println(findBiggestNonAjacentSubArr(new int[]{1,-1,-1,1,-1,-1,1,-1,-1}, 0));
-        System.out.println(findBiggestNonAjacentSubArr(new int[]{1,-1,1,-1,1,-1}, 0));
+        System.out.println(findBiggestNonAjacentSubArrRec(new int[]{1,3,1,0}, 0));
+        System.out.println(findBiggestNonAjacentSubArrRec(new int[]{1,0,0,1}, 0));
+        System.out.println(findBiggestNonAjacentSubArrRec(new int[]{1,0,0,0}, 0));
+        System.out.println(findBiggestNonAjacentSubArrRec(new int[]{1,2,2,3}, 0));
+        System.out.println(findBiggestNonAjacentSubArrRec(new int[]{1,2,3,4}, 0));
+        System.out.println(findBiggestNonAjacentSubArrRec(new int[]{5,1,1,5}, 0));
+        System.out.println(findBiggestNonAjacentSubArrRec(new int[]{1,-1,-1,1,-1,-1,1,-1,-1}, 0));
+        System.out.println(findBiggestNonAjacentSubArrRec(new int[]{1,-1,1,-1,1,-1}, 0));
 
     }
 
     @Test
     public void test2(){
-        System.out.println(FindMaxSum(new int[]{1,3,1,0}));
-        System.out.println(FindMaxSum(new int[]{1,0,0,1}));
-        System.out.println(FindMaxSum(new int[]{1,0,0,0}));
-        System.out.println(FindMaxSum(new int[]{1,2,2,3}));
-        System.out.println(FindMaxSum(new int[]{1,2,3,4}));
-        System.out.println(FindMaxSum(new int[]{5,1,1,5}));
+        System.out.println(findBiggestNonAjacentSubArrIter(new int[]{1,3,1,0}));
+        System.out.println(findBiggestNonAjacentSubArrIter(new int[]{1,0,0,1}));
+        System.out.println(findBiggestNonAjacentSubArrIter(new int[]{1,0,0,0}));
+        System.out.println(findBiggestNonAjacentSubArrIter(new int[]{1,2,2,3}));
+        System.out.println(findBiggestNonAjacentSubArrIter(new int[]{1,2,3,4}));
+        System.out.println(findBiggestNonAjacentSubArrIter(new int[]{5,1,1,5}));
     }
 }
