@@ -11,8 +11,8 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class FileEventHandler_test_on_file_CRUD {
-    String origFilePath = "C:\\Users\\WIN10\\IdeaProjects\\WorkSpace\\src\\IOTProject\\sqlCrud\\tmpMonitored\\monitored.txt";
-    String backupPath = "C:\\Users\\WIN10\\IdeaProjects\\WorkSpace\\src\\IOTProject\\sqlCrud\\tmpMonitored\\backup.txt";
+    String origFilePath = "XXXXXXX";
+    String backupPath = "XXXXXXX";
     InetSocketAddress serverAddress = new InetSocketAddress("localhost",6666);
 
     @Test

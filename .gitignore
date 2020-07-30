@@ -4,3 +4,4 @@
 venv/
 out/
 Projects.iml
+*.out

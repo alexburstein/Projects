@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileCRUDImp_test {
-    String pathToFile = "C:\\Users\\WIN10\\IdeaProjects\\WorkSpace\\src\\IOTProject\\sqlCrud\\tmpMonitored\\backup.txt";
+    String pathToFile = "XXXXXX";
     List<String> list = new ArrayList<>();
 
     @Test

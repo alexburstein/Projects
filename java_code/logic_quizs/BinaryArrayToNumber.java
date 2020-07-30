@@ -23,6 +23,7 @@ public class BinaryArrayToNumber {
     }
 
 
+
     @Test
     public void convertBinaryArrayToInt(){
         assertEquals(1, ConvertBinaryArrayToInt(new ArrayList<>(Arrays.asList(0,0,0,1))));
