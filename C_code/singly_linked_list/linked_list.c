@@ -1,5 +1,5 @@
 /***************************************************************
-Singly Linked List.
+Single Linked List.
 created by Alex Burstein   alexburstein@gmail.com
 ****************************************************************/
 
