@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 
 public class DirectoryMonitor_test {
 
-    String filePath = "C:\\Users\\WIN10\\IdeaProjects\\WorkSpace\\src\\IOTProject\\sqlCrud\\tmpMonitored\\monitored.txt";
+    String filePath = "XXXXXX";
     boolean isChanged = false;
 
 
