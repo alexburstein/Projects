@@ -4,5 +4,6 @@
 venv/
 out/
 Projects.iml
+.vscode/
 *.out
 *.exe

@@ -2,7 +2,6 @@
 Queue -  TEST
 created by Alex Burstein   alexburstein@gmail.com
      8/2019 
-infinity labs ol72
 ****************************************************************/
 #include <stdio.h>
 
