@@ -7,7 +7,7 @@ typedef struct c_queue queue_t;
 * param: arraySize - number of elements for that can be fit into the 
 	circular queue at once.
 * param: sizeOfElement - size of each element in the queue.
-* returns: a pointer to a circular queue. if alocation failed, returns NULL; */
+* returns: a pointer to a circular queue. if allocation failed, returns NULL; */
 queue_t *createCircularQueue(int arraySize);
 
 

@@ -5,8 +5,6 @@
 /*
 	a circular queue. 
 	that gets all kinds of data.
-	the user gives a pointer to the buffer and its size.
-	implement push and pop.
 */
 
 

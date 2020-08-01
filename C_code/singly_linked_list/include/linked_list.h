@@ -4,7 +4,6 @@
 #include <stdlib.h>	/*malloc, free*/
 
 
-
 /*############################################################################*/
 /* This file contains functions for linked_list data structure operations.*/
 /* Can be used for linked_list based algorithms */
