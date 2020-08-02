@@ -17,22 +17,22 @@ struct c_queue{
 
 
 queue_t *createCircularQueue(int numberOfElements){
-	queue_t* newQueue = malloc(sizeof(queue_t));
-	if(newQueue == NULL){
+	queue_t* queue = malloc(sizeof(queue_t));
+	if(queue == NULL){
 		return NULL;
 	}
 
-	newQueue->buff = malloc(numberOfElements * sizeof(void*));
-	if(newQueue->buff == NULL){
-		free(newQueue);
+	queue->buff = malloc(numberOfElements * sizeof(void*));
+	if(queue->buff == NULL){
+		free(queue);
 		return NULL;
 	}
 	
-	newQueue->queueStart = 0;
-	newQueue->queueSize = 0;
-	newQueue->buffSize = numberOfElements;
+	queue->queueStart = 0;
+	queue->queueSize = 0;
+	queue->buffSize = numberOfElements;
 
-	return newQueue;
+	return queue;
 }
 
 
