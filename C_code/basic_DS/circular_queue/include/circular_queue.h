@@ -11,7 +11,9 @@ typedef struct c_queue queue_t;
 queue_t *createCircularQueue(int arraySize);
 
 
-/* destroy a circular queue.*/
+/* destroy a circular queue.
+* param: queue - an instance of the circular queue.
+*/
 void destroyCircularQueue(queue_t *queue);
 
 
