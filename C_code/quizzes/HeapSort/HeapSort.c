@@ -98,54 +98,39 @@ size_t FindBiggerChild(char *arr, size_t arr_size, size_t elm_size, cmp_t cmp_fu
 }
 
 /***********************BiggerOfTwoChildren************************************/
-size_t BiggerOfTwoChildren(char *arr, size_t elm_size, cmp_t cmp_func, size_t index)
+size_t BiggerOfTwoChildren(char *arr, size_t elmSize, cmp_t cmp, size_t index)
 {
-	int cmp_res = 0;
-	size_t child[2] = {0};
-	child[0] =  ((index * 2) + 1);
-	child[1] =  ((index * 2) + 2);
+	int cmpRes = 0;
+	size_t leftChildIndex =  index * 2 + 1;
+	size_t rightChildIndex =  index * 2 + 2;
 
-	assert(NULL != arr);
+	cmpRes = cmp(&arr[leftChildIndex * elmSize] ,
+				 &arr[rightChildIndex * elmSize]);
 
-	cmp_res = cmp_func(arr + (child[0] * elm_size) ,
-					   arr + (child[1] * elm_size));
-
-	return (cmp_res < 0) ? child[1] : child[0];
+	return (cmpRes < 0) ? rightChildIndex : leftChildIndex;
 }
 
 /***********************NumOfCHildren******************************************/
-size_t NumOfCHildren(size_t arr_size, size_t index)
+size_t NumOfCHildren(size_t arrSize, size_t index)
 {
-	size_t child_counter = 0;
-	size_t child1_index =  ((index * 2) + 1);
-	size_t child2_index =  ((index * 2) + 2);		
-
-	if (child1_index < arr_size)
-	{
-		++child_counter;
-	}
-
-	if (child2_index < arr_size)
-	{
-		++child_counter;
-	}
+	size_t leftChildIndex =  index * 2 + 1;
+	size_t rightChildIndex =  index * 2 + 2;		
 	
-	return child_counter;
+	return (leftChildIndex < arrSize) + (rightChildIndex < arrSize);
 }
 
 /***************************SwapDataByIndex************************************/
-void SwapDataByBytes(char *first, char *second, size_t elm_size)
+void SwapDataByBytes(char *first, char *second, size_t numOfBytes)
 {
 	size_t i = 0;
-	char tmp = '\0';
 
 	assert(NULL != first);
 	assert(NULL != second);
 
-	for (i = 0; i < elm_size; ++i)
+	for (i = 0; i < numOfBytes; ++i)
 	{
-		tmp = *(first + i);
-		*(first + i) = *(second + i);
-		*(second + i) = tmp;
+		char tmp = first[i];
+		first[i] = second[i];
+		second[i] = tmp;
 	}
 }
