@@ -13,7 +13,6 @@ static void HeapUp(char *arr, size_t elm_size, size_t index, cmp_t cmp_func);
 static void HeapDown(char *arr, size_t arr_size, size_t elm_size, cmp_t cmp_func);
 static size_t FindBiggerChild(char *arr, size_t arr_size, size_t elm_size, cmp_t cmp_func, size_t index);
 static size_t BiggerOfTwoChildren(char *arr, size_t elm_size, cmp_t cmp_func, size_t index);
-static size_t NumOfCHildren(size_t arr_size, size_t index);
 static void SwapDataByBytes(char *first, char *second, size_t elm_size);
 static int LongCmp(const void *first, const void *second);
 

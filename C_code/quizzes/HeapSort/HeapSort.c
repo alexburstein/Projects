@@ -1,134 +1,107 @@
 #include "HeapSort.h"
 
 
-void HeapSortInPlace(void *base, size_t nitems, size_t elm_size, cmp_t cmp_func)
-{
+void HeapSortInPlace(void *base, size_t nitems, size_t elmSize, cmp_t cmp){
 	size_t i = 0;
 	size_t unsorted = 0;
 	char *arr = (char*)base;
 
-	for (i = 1; i < nitems; ++i)
-	{
-		HeapUp(arr, elm_size, i, cmp_func);
+	for (i = 1; i < nitems; ++i){
+		HeapUp(arr, elmSize, i, cmp);
 	}
 
-	for (unsorted = nitems; 0 < unsorted; --unsorted)
-	{
-		char *last_elm = arr + (unsorted - 1) * elm_size;
+	for (unsorted = nitems; 0 < unsorted; --unsorted){
+		char *last_elm = arr + (unsorted - 1) * elmSize;
 
-		SwapDataByBytes(arr, last_elm, elm_size);
-		HeapDown(arr, unsorted - 1, elm_size, cmp_func);
+		SwapDataByBytes(arr, last_elm, elmSize);
+		HeapDown(arr, unsorted - 1, elmSize, cmp);
 	}
 }
 
 /************************HeapUp************************************************/
-void HeapUp(char *arr, size_t elm_size, size_t index, cmp_t cmp_func)
-{
-	while (index != 0)
-	{
+void HeapUp(char *arr, size_t elmSize, size_t elmIndex, cmp_t cmp){
+	
+	while (elmIndex != 0){
 		int cmp_res = 0;
-		size_t parent_index = ((index - 1) / 2);
-		char *parent = arr + (parent_index * elm_size);
-		char *cur = arr + index * elm_size;
+		size_t parent_index = (elmIndex - 1) / 2;
+		char *parent =  &arr[parent_index * elmSize];
+		char *cur = &arr[elmIndex * elmSize];
 
-		cmp_res = cmp_func(parent, cur);
+		cmp_res = cmp(parent, cur);
 
-		if (cmp_res < 0)
-		{
-			SwapDataByBytes(parent, cur, elm_size);
-			index = parent_index;
+		if (cmp_res < 0){
+			SwapDataByBytes(parent, cur, elmSize);
+			elmIndex = parent_index;
 		}
-		else
-		{
+		else{
 			break;
 		}
 	}
 }
 
 /************************HeapDown**********************************************/
-void HeapDown(char *arr, size_t arr_size, size_t elm_size, cmp_t cmp_func)
-{
+void HeapDown(char *arr, size_t arrSize, size_t elmSize, cmp_t cmp){
 	char *cur = arr;
-	char *end = arr + arr_size * elm_size;
+	char *end = arr + arrSize * elmSize;
 	size_t index = 0;
 
-	while (cur < end)
-	{
+	while (cur < end){
 		int cmp_res = 0;
-		size_t bigger_child_index = FindBiggerChild(arr, arr_size, elm_size, 
-															cmp_func, index);
-		char *bigger_child = arr + bigger_child_index * elm_size;
-		cur = arr + index * elm_size;
+		size_t bigger_child_index = FindBiggerChild(arr, arrSize, elmSize, 
+															cmp, index);
+		char *bigger_child = arr + bigger_child_index * elmSize;
+		cur = arr + index * elmSize;
 
-		cmp_res = cmp_func(cur, bigger_child);
+		cmp_res = cmp(cur, bigger_child);
 
-		if (cmp_res < 0)
-		{
-			SwapDataByBytes(cur, bigger_child, elm_size);
+		if (cmp_res < 0){
+			SwapDataByBytes(cur, bigger_child, elmSize);
 			index = bigger_child_index;
 		}
-		else
-		{
+		else{
 			break;
 		}
 	}
 }
 
 /************************FindBiggerChild***************************************/
-size_t FindBiggerChild(char *arr, size_t arr_size, size_t elm_size, cmp_t cmp_func, size_t index)
-{
-	size_t num_of_children = 0;
+size_t FindBiggerChild(char *arr, size_t arrSize, size_t elmSize, cmp_t cmp, 
+																size_t index){
+	size_t numOfChildren = 0;
 	size_t child_index = index;
+	
+	numOfChildren = ((index * 2 + 1) < arrSize) + ((index * 2 + 2) < arrSize);
 
-	assert(NULL != arr);
-	assert(NULL != cmp_func);
-
-	num_of_children = NumOfCHildren(arr_size, index);
-
-	if (1 == num_of_children)
-	{
-		child_index = ((index * 2) + 1);
+	if (1 == numOfChildren){
+		child_index = (index * 2) + 1;
 	}
-	else if (2 == num_of_children)
-	{
-		child_index = BiggerOfTwoChildren(arr, elm_size, cmp_func, index);
+	else if (2 == numOfChildren){
+		child_index = BiggerOfTwoChildren(arr, elmSize, cmp, index);
 	}
 
 	return child_index;
 }
 
 /***********************BiggerOfTwoChildren************************************/
-size_t BiggerOfTwoChildren(char *arr, size_t elmSize, cmp_t cmp, size_t index)
-{
+size_t BiggerOfTwoChildren(char *arr, size_t elmSize, cmp_t cmp, size_t index){
 	int cmpRes = 0;
 	size_t leftChildIndex =  index * 2 + 1;
 	size_t rightChildIndex =  index * 2 + 2;
 
-	cmpRes = cmp(&arr[leftChildIndex * elmSize] ,
-				 &arr[rightChildIndex * elmSize]);
+	cmpRes = cmp(&arr[leftChildIndex * elmSize] , &arr[rightChildIndex * 
+																	elmSize]);
 
 	return (cmpRes < 0) ? rightChildIndex : leftChildIndex;
 }
 
-/***********************NumOfCHildren******************************************/
-size_t NumOfCHildren(size_t arrSize, size_t index)
-{
-	size_t leftChildIndex =  index * 2 + 1;
-	size_t rightChildIndex =  index * 2 + 2;		
-	
-	return (leftChildIndex < arrSize) + (rightChildIndex < arrSize);
-}
-
-/***************************SwapDataByIndex************************************/
-void SwapDataByBytes(char *first, char *second, size_t numOfBytes)
-{
+/***************************SwapDataByBytes************************************/
+void SwapDataByBytes(char *first, char *second, size_t numOfBytes){
 	size_t i = 0;
 
 	assert(NULL != first);
 	assert(NULL != second);
 
-	for (i = 0; i < numOfBytes; ++i)
-	{
+	for (i = 0; i < numOfBytes; ++i){
 		char tmp = first[i];
 		first[i] = second[i];
 		second[i] = tmp;
