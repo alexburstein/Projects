@@ -1,4 +1,4 @@
-package quizzs.ConsumerProducerQuizzes.OneAtATimeFSQ;
+package quizzs.ConsumerProducerQuizzes.OneOfEachAtATime;
 
 /*
     implement FSQ (fixed sized queue) with one mutex and two semaphores.
@@ -7,20 +7,25 @@ package quizzs.ConsumerProducerQuizzes.OneAtATimeFSQ;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.AbstractQueue;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class oneAtATimeFSQ<T> extends AbstractQueue<T> {
+public class oneOfEachAtATimeFSQ<T> extends AbstractQueue<T> {
     private final Queue<T> q;
-    static final private ReentrantLock lock = new ReentrantLock();
+    static final private ReentrantLock producerLock = new ReentrantLock();
+    static final private ReentrantLock consumerLock = new ReentrantLock();
 
     static final private Semaphore minSem = new Semaphore(0);
     static private Semaphore maxSem;
 
-    public oneAtATimeFSQ(int size){
+    public oneOfEachAtATimeFSQ(int size){
         maxSem = new Semaphore(size);
-        q = new LinkedList<>();
+        q = new ConcurrentLinkedQueue<>();
     }
 
     @Override
@@ -38,10 +43,10 @@ public class oneAtATimeFSQ<T> extends AbstractQueue<T> {
         try {maxSem.acquire();} catch (InterruptedException ignored) {}
         boolean offerResult;
         try {
-            lock.lock();
+            producerLock.lock();
             offerResult = q.offer(t);
         } finally {
-            lock.unlock();
+            producerLock.unlock();
         }
         minSem.release();
 
@@ -53,10 +58,10 @@ public class oneAtATimeFSQ<T> extends AbstractQueue<T> {
         try {minSem.acquire();} catch (InterruptedException ignored) {}
         T t;
         try {
-            lock.lock();
+            consumerLock.lock();
             t = q.poll();
         } finally {
-            lock.unlock();
+            consumerLock.unlock();
         }
         maxSem.release();
 
