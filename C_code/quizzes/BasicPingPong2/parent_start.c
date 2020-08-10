@@ -1,10 +1,13 @@
-/*******************************************************************************
- * PingPong2 																   *
- * by Alex Burstein   alexburstein@gmail.com 								   *
- ******************************************************************************/
+/*****************************************************************************
+ * proccess signal PingPong 													
+ * Created by Alex Burstein   alexburstein@gmail.com 	
+ *					 
+ * creates two proccesses that play ping pong with SIGUSR1 signals. 
+ * busy wait when idle. comunicate with help of a signal handler.
+ *****************************************************************************/
 #include <stdlib.h> /* exit */
-#include <unistd.h> /* fork*/
-#include <sys/wait.h> /* wait, WEXITSTATUS, WIFEXITED macros */
+#include <unistd.h> /* fork */
+#include <sys/wait.h> /* EXIT status */
 #include <string.h> /* memset */
 
 #define UNUSED(x) ((void)x)
@@ -17,7 +20,6 @@ static void StartPingPong();
 static void InitSigusr1();
 static void DoOrExit(int func_res);
 static void Sigusr1Handler(int signal_number);
-
 
 int main()
 { 

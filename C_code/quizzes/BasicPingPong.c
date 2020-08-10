@@ -1,15 +1,13 @@
-#include <unistd.h> /* fork*/
-#include <signal.h> /* sigaction */
-#include <string.h> /* memset */
-
 /*****************************************************************************
  * proccess signal PingPong 													
  * Created by Alex Burstein   alexburstein@gmail.com 	
  *					 
- * creates two proccesses that play ping pong with SIGUSR1 signals
- * with help of a signal handler.
+ * creates two proccesses that play ping pong with SIGUSR1 signals. 
+ * busy wait when idle. comunicate with help of a signal handler.
  *****************************************************************************/
-
+#include <unistd.h> /* fork*/
+#include <signal.h> /* sigaction */
+#include <string.h> /* memset */
 #define UNUSED(x) ((void)x)
 
 typedef struct sigaction sigact_t;
