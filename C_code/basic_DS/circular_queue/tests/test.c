@@ -3,6 +3,8 @@
 #include <string.h>
 #include "circular_queue.h"
 
+#define UNUSED(x) ((void)x)
+
 static void Test1();
 static void Test2();
 
@@ -16,10 +18,9 @@ int main(){
 void Test1(){
 	queue_t *queue = createCircularQueue(5);
 	int a = 9;
-	int res = enqueue(queue, &a);
-	assert(0 == res);
+	assert(0 == enqueue(queue, &a));
 	assert(9 == *(int*)dequeue(queue));
-	
+	UNUSED(a);
 	destroyCircularQueue(queue);
 }
 
@@ -29,8 +30,7 @@ void Test2(){
 	char *arr[] = {"hello", "my", "name", "is", "alex"};
 	
 	for(i = 0; i < 5; ++i){
-		int res = enqueue(queue, arr[i]);
-		assert(0 == res);
+		assert(0 == enqueue(queue, arr[i]));
 	}
 
 	assert(-1 == enqueue(queue, arr[0]));
@@ -43,7 +43,7 @@ void Test2(){
 	}
 	
 	assert(0 == strcmp((char*)dequeue(queue), "all good"));
-	
+	UNUSED(arr);
 	destroyCircularQueue(queue);
 }
 
