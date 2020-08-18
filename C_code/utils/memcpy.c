@@ -28,7 +28,7 @@ void *Memcpy(void *dest, const void *src, size_t n)
 	assert(NULL != dest);
 	assert(NULL != src);
  /* aligning */
-	while((n > 0) && (0 =! ((long unsigned int)dest & (WORD_SIZE - 1))))
+	while((n > 0) && (((size_t)dest & (WORD_SIZE - 1)) != 0))
 	{
 		*(char*)dest = *(char*)src;
 		dest = (char*)dest + 1;
@@ -67,14 +67,14 @@ static void BasicTest()
 	for (i = 0; i < sizeof(num_arr)/sizeof(*num_arr); ++i)
 	{
 		Memcpy(arr1, arr2, num_arr[i]);
-		assert(strncmp(arr1,arr2, i) == 0)
+		assert(strncmp(arr1,arr2, i) == 0);
 		memset(arr1, '1', 50);
 	}
 
 	for (i = 0; i < sizeof(num_arr)/sizeof(*num_arr); ++i)
 	{
 		Memcpy(arr1, arr2 + 3, num_arr[i]);
-		assert(strncmp(arr1,arr2 + 3, i) == 0)
+		assert(strncmp(arr1,arr2 + 3, i) == 0);
 		memset(arr1, '1', 50);
 	}
 
